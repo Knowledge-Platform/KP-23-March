@@ -928,3 +928,7 @@ def contribute_bug2(request):
         messages.success(request, 'Your message has been sent!')
         return redirect('home')
     return render(request,'authentication/contribute_bug2.html')
+
+
+def searching2(request):
+    return render(request,"authentication/searching2.html")

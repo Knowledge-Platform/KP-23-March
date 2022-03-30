@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <link rel="icon" href="https://klaindustries.com/wp-content/uploads/2017/07/Light-bulb-icon.png" width="300" height="300" type="image/icon type">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Searching2</title>
+    <style>
+        /* Add a black background color to the top navigation bar */
+
+  .search-container {
+      max-width: 400px;
+      margin: 4px 4px 4px 4px;
+  }
+  input[type="text"] {
+      display: inline;
+      
+      width: 400px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #00a0ff;
+      padding: 10px;
+      border: 2px solid #00a0ff;
+  }
+  
+  .search-container form {
+      position: relative;
+  }
+  .search-container form button {
+      position: relative;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 50px;
+      background: transparent;
+      border: transparent;
+      font-size: 20px;
+      color: #00a0ff;
+      cursor: pointer;
+      outline: 0;
+  }
+
+#ul
+{
+	list-style:none;
+	padding:0;
+	margin:10;
+}
+
+#nav li
+{
+	display:inline;
+	padding:10px 10px 10px 10px;
+	float:right;
+}
+
+#nav li a
+{   
+	text-decoration:none;
+	color:#00a0ff;
+	vertical-align:middle;
+    border:2px solid grey ;
+    background-color: white;
+}
+
+#nav a:hover
+{
+	color:black;
+	background-color:yellow;
+}
+
+ 
+.tags{
+   display: list-item;    
+  } 
+
+  .header {
+    display: inline-block; 
+    width: 100%;
+    border: 1px solid #00a0ff;
+  }
+  .header1 {
+    display: inline-block; 
+    width: 73%;
+    border: 1px solid #00a0ff;
+  }
+
+  .playerOne {
+    float: left;
+  }
+  .playerTwo {
+    float: right;
+  }
+
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="sh">
+    <a class="navbar-brand" href="#" ><img src="/static/29.png" height="40" width="120"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/"><i class="fa fa-fw fa-home"></i>Home<span class="sr-only">(current)</span></a>
+        </li>      
+    
+        <li class="nav-item">
+          <a class="nav-link" href="/contribute">Contribute</a>
+        </li>
+  
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Filter Knowledges
+          </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="defects">Defects</a>
+              {% comment %} Neo4j  {% endcomment %}
+              
+          <a class="dropdown-item" href="enhancements">Enhancement</a>
+          <a class="dropdown-item" href="opportunity">Opportunity</a>
+          <a class="dropdown-item" href="supportticket">Support Ticket</a>
+        </div>
+      </li>
+  
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Issue Tracking
+        </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="jira">Jira</a>
+        <a class="dropdown-item" href="salesforce">Salesforce</a>
+        <a class="dropdown-item" href="freshdesk">FreshDesk</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/searching2">Search2</a>
+    </li>
+  
+      </ul>
+      <form class="form-inline my-2 my-lg-0" method=POST action={% url 'search'%} >
+        {%csrf_token%}
+        <input class="form-control mr-sm-2" type="search" placeholder="Search Knowledges" aria-label="Search" name="searched">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fa fa-fw fa-search"></i></button> &nbsp &nbsp&nbsp&nbsp
+      </form>
+  
+    </div>
+    <div class="btn-group">
+      <img type="button" src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/30/ffffff/external-user-interface-kiranshastry-lineal-kiranshastry-1.png" class="btn btn-primary"/>
+      <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" >
+        <p style="display:inline">{{user.first_name}}</p>
+        <span class="visually-hidden"></span>
+      </button>
+      {% if user.is_authenticated %}
+      <ul class="dropdown-menu">
+        {% comment %} <li><a class="dropdown-item" href="/signup" >Sign up</a></li> {% endcomment %}
+        {% comment %} <li><a class="dropdown-item" href="/signin">Sign in</a></li> {% endcomment %}
+        <li><a class="dropdown-item" href="/your_contribution" name="contri"> Your Contributions</a></li>
+        <li><a class="dropdown-item" id="change-password" href="/change_password_form">Change Password</a></li>
+        <li><a class="dropdown-item" href="/signout">Sign out</a></li>
+        <li><a class="dropdown-item" id="confirm-delete" href="/delete_account">Delete Account</a></li>
+      </ul>
+      {% else %}
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/signup" >Sign up</a></li>
+        <li><a class="dropdown-item" href="/signin">Sign in</a></li>
+        <li><a class="dropdown-item" href="/zoho">Zoho</a></li>
+      </ul>
+      {% endif %}
+    </div>
+  </nav>
+    <center>
+    <div class="search-container" style="display:inline";>
+        <form method=POST action={% url 'search'%}>
+            {%csrf_token%}
+          <input type="text" placeholder="Search..." name="searched" id="searchitem" onkeyup="search_animal()">
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fa fa-fw fa-search"></i></button>
+          
+        </form>
+    </div>
+</center>
+    
+    <div class="header">
+        <div class="header1">
+        <div class="playerOne">
+            <br><br><br><br><br><br><br><br><br><br>
+                <center><h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Here comes the search results</h2></center>
+                    <br><br><br><br><br><br>
+                <br><br><br>
+               
+                
+                
+        </div>
+    </div>
+        <div class="playerTwo">
+            <div id="nav">
+                <ul id='list'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2 class="btn btn-secondary">Tags</h2><br>
+                <li class="tags" ><a class="btn btn-primary" href="">Drivers</a></li>
+                <li class="tags" ><a class="btn btn-primary" href="">Server</a></li>
+                <li class="tags" ><a class="btn btn-primary" href="">Connect</a></li><br><br><br>
+                <li class="tags" ><a class="btn btn-primary" href="">Sync</a></li>
+                <li class="tags" ><a class="btn btn-primary" href="">DBAmp</a></li>
+                <li class="tags"><a class="btn btn-primary" href="">automate</a></li><br><br><br>
+                <li class="tags"><a class="btn btn-primary" href="">integrate</a></li>
+                <li class="tags"><a class="btn btn-primary" href="">neo4j</a></li>
+                <li class="tags"><a class="btn btn-primary" href="">java</a></li><br><br><br>
+                <li class="tags"><a class="btn btn-primary" href="">cloud</a></li>
+                <li class="tags"><a class="btn btn-primary" href="">odbc</a></li>
+                <li class="tags"><a class="btn btn-primary" href="">sdk</a></li><br><br><br>
+                <li class="tags"><a class="btn btn-primary" href="">neo4j</a></li>
+                <li class="tags"><a class="btn btn-primary" href="">crm</a></li>
+                <li class="tags"><a class="btn btn-primary" href="">Jira</a></li><br><br><br>
+                <li class="tags"><a class="btn btn-primary" href="">IPaas</a></li>
+                <li class="tags"><a class="btn btn-primary" href="">mongodb</a></li>
+                <li class="tags"><a class="btn btn-primary" href="">salesforce</a></li><br><br><br>
+                </ul>
+              </div>
+        </div>
+      </div>
+
+<script>
+    // JavaScript code
+function search_animal() {
+	let input = document.getElementById('searchitem').value
+	input=input.toLowerCase();
+	let x = document.getElementsByClassName('animals');
+	
+	for (i = 0; i < x.length; i++) {
+		if (!x[i].innerHTML.toLowerCase().includes(input)) {
+			x[i].style.display="none";
+		}
+		else {
+			x[i].style.display="list-item";				
+		}
+	}
+}
+
+</script>
+    
+</body>
+</html>
